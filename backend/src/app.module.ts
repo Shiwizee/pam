@@ -8,6 +8,7 @@ import { MesaModule } from './modules/mesa/mesa.module';
 import { ProdutoModule } from './modules/produto/produto.module';
 import { ComandaItemModule } from './modules/comanda-item/comanda-item.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { AuthModule } from './modules/auth/auth.module';
 import ormConfig from './config/orm.config';
 
 @Module({
@@ -23,6 +24,7 @@ import ormConfig from './config/orm.config';
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
     ComandaModule,
     MesaModule,
     ProdutoModule,

@@ -6,9 +6,9 @@ dotenv.config();
 
 const algorithm = 'aes-256-ctr';
 const secretKey = process.env.ENCRYPTION_KEY || 'default_secret_key_32_characters'; // Use environment variables for security
-const iv = crypto.randomBytes(16); // Initialization vector
 
 export const encrypt = (text: string): string => {
+  const iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
   const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
   return iv.toString('hex') + ':' + encrypted.toString('hex');

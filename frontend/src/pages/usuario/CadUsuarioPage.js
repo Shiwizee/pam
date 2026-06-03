@@ -1,11 +1,16 @@
 import './CadUsuarioPage.css'
 import { createHeader } from '../../shared/Header.js'
 import { logout } from '../../shared/util.js';
+import { isAuthenticated } from '../../shared/auth.js';
 
 const pageName = 'Cadastrar Usuario';
 
 class CadUsuarioPage extends HTMLElement {
     connectedCallback() {
+        if (!isAuthenticated()) {
+            document.querySelector('ion-router').push('/login', 'root');
+            return;
+        }
         this.classList.add('ion-page');
         const cabecalho = createHeader(pageName);
         this.innerHTML = `
@@ -48,9 +53,7 @@ class CadUsuarioPage extends HTMLElement {
         `;
         this.querySelector('#logout-btn')
         .addEventListener('click', logout);
-        this.querySelector('#btn-cancelar').addEventListener('click',
-            
-            () =>  windows.history.back());
+this.querySelector('#btn-cancelar').addEventListener('click', () =>  window.history.back());
     }
 }
 
